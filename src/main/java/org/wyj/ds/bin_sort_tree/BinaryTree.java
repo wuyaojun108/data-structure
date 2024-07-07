@@ -172,7 +172,7 @@ public class BinaryTree<K extends Comparable<K>, V> {
         LinkedList<Node> stack = new LinkedList<>();
         Node curNode = root;
         stack.push(curNode);
-        while (stack.size() != 0) {
+        while (!stack.isEmpty()) {
             Node node = stack.pop();
             queue.offer(node.key + ": " + node.value);
             if (node.right != null) {
@@ -217,7 +217,7 @@ public class BinaryTree<K extends Comparable<K>, V> {
         }
         LinkedList<Node> stack = new LinkedList<>();
         Node curNode = root;
-        while (curNode != null || stack.size() != 0) {
+        while (curNode != null || !stack.isEmpty()) {
             while (curNode != null) {
                 stack.push(curNode);
                 curNode = curNode.left;
@@ -259,7 +259,7 @@ public class BinaryTree<K extends Comparable<K>, V> {
         LinkedList<Node> stack = new LinkedList<>();
         Node curNode = root;
         Node lastDealNode = null;
-        while (curNode != null || stack.size() != 0) {
+        while (curNode != null || !stack.isEmpty()) {
             while (curNode != null) {
                 stack.push(curNode);
                 curNode = curNode.left;
@@ -286,7 +286,7 @@ public class BinaryTree<K extends Comparable<K>, V> {
         }
         LinkedList<Node> queue = new LinkedList<>();
         queue.offer(root);
-        while (queue.size() != 0) {
+        while (!queue.isEmpty()) {
             Node node = queue.poll();
             resultQueue.offer(node.key + ": " + node.value);
             if (node.left != null) {
@@ -307,7 +307,7 @@ public class BinaryTree<K extends Comparable<K>, V> {
         }
         LinkedList<Node> queue = new LinkedList<>();
         queue.offer(root);
-        while (queue.size() != 0) {
+        while (!queue.isEmpty()) {
             depth++;
             int size = queue.size();
             for (int i = 0; i < size; i++) {
@@ -331,7 +331,7 @@ public class BinaryTree<K extends Comparable<K>, V> {
         }
         LinkedList<Node> queue = new LinkedList<>();
         queue.offer(root);
-        while (queue.size() != 0) {
+        while (!queue.isEmpty()) {
             depth++;
             int size = queue.size();
             for (int i = 0; i < size; i++) {
@@ -367,7 +367,7 @@ public class BinaryTree<K extends Comparable<K>, V> {
 
         @Override
         public boolean hasNext() {
-            return queue.size() != 0;
+            return !queue.isEmpty();
         }
 
         @Override
