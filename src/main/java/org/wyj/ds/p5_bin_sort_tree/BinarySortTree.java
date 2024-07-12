@@ -328,7 +328,7 @@ public class BinarySortTree<K extends Comparable<K>, V> {
     }
 
     private void writeEleToArray(Node node, int rowIdx, int colIdx, Object[][] arr, int treeDepth) {
-        // 计算当前层元素和下一层元素之间在x轴上的位置插，原理是，假设最后一层和上一层元素的位置插是1，也就是说，
+        // 计算当前层元素和下一层元素之间在x轴上的位置差，原理是，设定最后一层和上一层元素的位置差是1，也就是说，
         // 最后一层的元素使用1个分隔符隔开，那么依次类推第一层和第二层元素之间的位置差，就是2的倍数，具体是几倍，
         // 取决于树一共有多少层
         int gap = (int) Math.pow(2, (treeDepth - (rowIdx + 2))); // rowIdx + 2，当前行的行号
