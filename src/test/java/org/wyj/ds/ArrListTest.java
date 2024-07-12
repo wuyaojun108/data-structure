@@ -1,7 +1,7 @@
-package org.wyj;
+package org.wyj.ds;
 
 import org.junit.Test;
-import org.wyj.ds.list.MyArrList;
+import org.wyj.ds.p1_list.ArrList;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -13,11 +13,11 @@ import java.util.Objects;
  * @auther 武耀君
  * @date 2024/7/5
  */
-public class MyArrListTest {
+public class ArrListTest {
     // 测试向列表中添加元素
     @Test
     public void test1() {
-        MyArrList<String> arrList = new MyArrList<>();
+        ArrList<String> arrList = new ArrList<>();
         arrList.add("aaa");
         arrList.add("aab");
         arrList.add("aac");
@@ -38,7 +38,7 @@ public class MyArrListTest {
     // 测试根据下标来移除元素
     @Test
     public void test2() {
-        MyArrList<String> arrList = new MyArrList<>();
+        ArrList<String> arrList = new ArrList<>();
         arrList.add("aaa");
         arrList.add("aab");
         arrList.add("aac");
@@ -60,7 +60,7 @@ public class MyArrListTest {
     // 测试移除指定元素
     @Test
     public void test3() {
-        MyArrList<String> arrList = new MyArrList<>();
+        ArrList<String> arrList = new ArrList<>();
         arrList.add(null);
         arrList.add("aaa");
         arrList.add("aab");
@@ -82,7 +82,7 @@ public class MyArrListTest {
     // 测试isEmpty函数
     @Test
     public void test4() {
-        MyArrList<String> arrList = new MyArrList<>();
+        ArrList<String> arrList = new ArrList<>();
         System.out.println("arrList.isEmpty() = " + arrList.isEmpty());  // true
         arrList.add(null);
         System.out.println("arrList.isEmpty() = " + arrList.isEmpty());  // false
@@ -92,7 +92,7 @@ public class MyArrListTest {
     // 测试clear方法
     @Test
     public void test5() {
-        MyArrList<String> arrList = new MyArrList<>();
+        ArrList<String> arrList = new ArrList<>();
         arrList.add(null);
         arrList.add("aaa");
         arrList.add("aab");
@@ -111,7 +111,7 @@ public class MyArrListTest {
     // 测试contains方法
     @Test
     public void test6() {
-        MyArrList<String> arrList = new MyArrList<>();
+        ArrList<String> arrList = new ArrList<>();
         arrList.add("aaa");
         arrList.add(null);
         arrList.add("aab");
@@ -130,7 +130,7 @@ public class MyArrListTest {
     // 测试迭代器
     @Test
     public void test7() {
-        MyArrList<String> arrList = new MyArrList<>();
+        ArrList<String> arrList = new ArrList<>();
         arrList.add("aaa");
         arrList.add(null);
         arrList.add("aab");
@@ -153,7 +153,7 @@ public class MyArrListTest {
     // 测试addAll方法
     @Test
     public void test8() {
-        MyArrList<String> arrList = new MyArrList<>();
+        ArrList<String> arrList = new ArrList<>();
         arrList.add("aaa");
         arrList.add(null);
         arrList.add("aab");
@@ -165,7 +165,7 @@ public class MyArrListTest {
         arrList.add("aah");
         arrList.add("aai");
 
-        MyArrList<String> arr2List = new MyArrList<>();
+        ArrList<String> arr2List = new ArrList<>();
         arr2List.addAll(arrList);
         for (int i = 0; i < arr2List.size(); i++) {
             System.out.println(arrList.get(i));
@@ -177,7 +177,7 @@ public class MyArrListTest {
     // 测试当前类是否可以被遍历
     @Test
     public void test10() {
-        MyArrList<String> arrList = new MyArrList<>();
+        ArrList<String> arrList = new ArrList<>();
         arrList.add("aaa");
         arrList.add(null);
         arrList.add("aab");
@@ -197,7 +197,7 @@ public class MyArrListTest {
     // 测试在指定位置添加元素
     @Test
     public void test11() {
-        MyArrList<String> arrList = new MyArrList<>();
+        ArrList<String> arrList = new ArrList<>();
         arrList.add("aaa");
         arrList.add("aab");
         arrList.add("aac");
@@ -219,7 +219,7 @@ public class MyArrListTest {
     // 测试indexOf方法
     @Test
     public void test12() {
-        MyArrList<String> arrList = new MyArrList<>();
+        ArrList<String> arrList = new ArrList<>();
         arrList.add("aaa");
         arrList.add(null);
         arrList.add("aab");
@@ -237,7 +237,7 @@ public class MyArrListTest {
     // 测试lastIndexOf方法
     @Test
     public void test13() {
-        MyArrList<String> arrList = new MyArrList<>();
+        ArrList<String> arrList = new ArrList<>();
         arrList.add("aaa");
         arrList.add(null);
         arrList.add("aab");
@@ -251,12 +251,16 @@ public class MyArrListTest {
 
         assert arrList.lastIndexOf("aab") == 8;
         assert arrList.lastIndexOf(null) == 1;
+        assert arrList.lastIndexOf("www") == -1;
+
+        ArrList<String> arr2List = new ArrList<>();
+        assert arrList.lastIndexOf("aa") == -1;
     }
 
     // 测试toArray方法
     @Test
     public void test14() {
-        MyArrList<String> arrList = new MyArrList<>();
+        ArrList<String> arrList = new ArrList<>();
         arrList.add("aaa");
         arrList.add(null);
         arrList.add("aab");
@@ -279,7 +283,7 @@ public class MyArrListTest {
     // 测试在指定位置添加元素
     @Test
     public void test15() {
-        MyArrList<String> arrList = new MyArrList<>();
+        ArrList<String> arrList = new ArrList<>();
         arrList.add("aaa");
         arrList.add("aab");
         arrList.add("aac");
@@ -302,7 +306,7 @@ public class MyArrListTest {
     // 测试将集合转换为数组的方法
     @Test
     public void test16() {
-        MyArrList<String> arrList = new MyArrList<>();
+        ArrList<String> arrList = new ArrList<>();
         arrList.add("aaa");
         arrList.add("aab");
         arrList.add("aac");
@@ -320,7 +324,7 @@ public class MyArrListTest {
     // 测试将集合转换为数组的方法，指定数组的类型
     @Test
     public void test17() {
-        MyArrList<String> arrList = new MyArrList<>();
+        ArrList<String> arrList = new ArrList<>();
         arrList.add("aaa");
         arrList.add("aab");
         arrList.add("aac");
@@ -339,7 +343,7 @@ public class MyArrListTest {
     @Test
     public void test18() throws IOException, ClassNotFoundException {
         // 序列化
-        MyArrList<Object> arrList = new MyArrList<>();
+        ArrList<Object> arrList = new ArrList<>();
         arrList.add("aaa");
         arrList.add("aab");
         arrList.add(null);
@@ -356,7 +360,7 @@ public class MyArrListTest {
         // 反序列化
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArray);
         ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
-        MyArrList<String> arr2List = (MyArrList<String>) objectInputStream.readObject();
+        ArrList<String> arr2List = (ArrList<String>) objectInputStream.readObject();
 
         for (String o : arr2List) {
             System.out.println("o = " + o);
@@ -368,7 +372,7 @@ public class MyArrListTest {
     @Test
     public void test19() throws IOException, ClassNotFoundException {
         // 序列化
-        MyArrList<Object> arrList = new MyArrList<>();
+        ArrList<Object> arrList = new ArrList<>();
         arrList.add("aaa");
         arrList.add("aab");
         arrList.add(null);
@@ -385,7 +389,7 @@ public class MyArrListTest {
         // 反序列化
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArray);
         ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
-        MyArrList<String> arr2List = new MyArrList<>();
+        ArrList<String> arr2List = new ArrList<>();
         arr2List.readObject(objectInputStream);
         for (String o : arr2List) {
             System.out.println("o = " + o);
@@ -410,7 +414,7 @@ public class MyArrListTest {
     // 测试removeAll方法
     @Test
     public void test20() {
-        MyArrList<String> arrList = new MyArrList<>();
+        ArrList<String> arrList = new ArrList<>();
         arrList.add("aaa");
         arrList.add("aab");
         arrList.add("aac");
@@ -431,7 +435,7 @@ public class MyArrListTest {
     // 测试retainAll方法
     @Test
     public void test21() {
-        MyArrList<String> arrList = new MyArrList<>();
+        ArrList<String> arrList = new ArrList<>();
         arrList.add("aaa");
         arrList.add("aab");
         arrList.add("aac");
@@ -452,7 +456,7 @@ public class MyArrListTest {
     // 测试containsAll方法
     @Test
     public void test22() {
-        MyArrList<String> arrList = new MyArrList<>();
+        ArrList<String> arrList = new ArrList<>();
         arrList.add("aaa");
         arrList.add("aab");
         arrList.add("aac");
@@ -462,9 +466,73 @@ public class MyArrListTest {
         list2.add("aab");
         list2.add("aad");
         list2.add("aaf");
-        boolean b = arrList.containsAll(list2);
+        assert !arrList.containsAll(list2);
 
-        assert !b;
+        ArrayList<String> list3 = new ArrayList<>();
+        list3.add("aab");
+        list3.add("aad");
+        assert arrList.containsAll(list3);
     }
 
+    // 测试clone方法
+    @Test
+    public void test23() {
+        ArrList<String> arrList = new ArrList<>();
+        arrList.add("aaa");
+        arrList.add("aab");
+        arrList.add("aac");
+        arrList.add("aad");
+
+        ArrList<String> arr2List = arrList.clone();
+        arr2List.set(2, "fff");
+
+        // 拷贝出的数组和原先的数组互不影响
+        assert arrList.get(2).equals("aac");
+    }
+
+    // 测试addAll方法，在指定下标处添加元素
+    @Test
+    public void test24() {
+        ArrList<String> arrList = new ArrList<>();
+        arrList.add("aaa");
+        arrList.add("aab");
+        arrList.add("aac");
+        arrList.add("aad");
+
+        ArrList<String> arr2List = new ArrList<>();
+        arr2List.add("fff");
+        arr2List.add("eee");
+        arr2List.addAll(1, arrList);
+        for (int i = 0; i < arr2List.size(); i++) {
+            System.out.println(arr2List.get(i));
+        }
+
+        assert arr2List.size() == 6;
+        assert arr2List.get(5).equals("eee");
+        assert arr2List.get(4).equals("aad");
+    }
+
+    // 测试get方法
+    @Test
+    public void test25() {
+        ArrList<String> arrList = new ArrList<>();
+        arrList.add("aaa");
+        arrList.add("aab");
+        arrList.add("aac");
+        arrList.add("aad");
+
+        String msg = null;
+        try {
+            String s = arrList.get(-1);
+        } catch (Exception e) {
+            msg = e.getMessage();
+        }
+        assert msg.equals("下标越界：-1");
+        try {
+            String s = arrList.get(10);
+        } catch (Exception e) {
+            msg = e.getMessage();
+        }
+        assert msg.equals("下标越界：10");
+    }
 }

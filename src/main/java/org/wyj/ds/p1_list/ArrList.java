@@ -1,4 +1,4 @@
-package org.wyj.ds.list;
+package org.wyj.ds.p1_list;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -7,18 +7,12 @@ import java.io.Serializable;
 import java.util.*;
 
 /**
- * 基于数组的集合，集合内使用一个Object类型的空数组用来存放元素，
- * 使用一个字段来描述集合的容量，使用一个字段来描述集合内共有多少元素
- * 功能：
- * 添加元素，在指定位置插入元素
- * 删除指定位置的元素
- * 判断集合是否为空
- * 返回某个元素的下标
- * 判断集合是否包含某个元素
- * 把集合的大小变成它实际存储数据所需要的大小
- * 一个迭代器，来遍历集合
+ * @auther 武耀君
+ * @date 2024/7/5
+ *
+ * 基于数组的列表
  */
-public class MyArrList<T> implements List<T>, Iterable<T>, Serializable {
+public class ArrList<E> implements List<E>, Iterable<E>, Serializable, Cloneable {
     private static final long serialVersionUID = 1234L;
 
     private static final int DEFAULT_CAPACITY = 8;
@@ -26,7 +20,7 @@ public class MyArrList<T> implements List<T>, Iterable<T>, Serializable {
     private int size;
     private int capacity;
 
-    public MyArrList() {
+    public ArrList() {
         capacity = DEFAULT_CAPACITY;
         size = 0;
         arr = new Object[capacity];
@@ -60,7 +54,7 @@ public class MyArrList<T> implements List<T>, Iterable<T>, Serializable {
      * 向列表的末尾添加元素
      */
     @Override
-    public boolean add(T ele) {
+    public boolean add(E ele) {
         checkCapacity();
         arr[size++] = ele;
         return true;
@@ -72,7 +66,7 @@ public class MyArrList<T> implements List<T>, Iterable<T>, Serializable {
      * @param element 要插入的元素
      */
     @Override
-    public void add(int idx, T element) {
+    public void add(int idx, E element) {
         checkIdx(idx);
         checkCapacity();
 
@@ -99,8 +93,8 @@ public class MyArrList<T> implements List<T>, Iterable<T>, Serializable {
      */
     @Override
     public boolean containsAll(Collection<?> c) {
-        for (int i = 0; i < size; i++) {
-            if (!c.contains(arrData(i))) {
+        for (Object o : c) {
+            if (!contains(o)) {
                 return false;
             }
         }
@@ -108,17 +102,17 @@ public class MyArrList<T> implements List<T>, Iterable<T>, Serializable {
     }
 
     @Override
-    public boolean addAll(Collection<? extends T> c) {
-        for (T t : c) {
+    public boolean addAll(Collection<? extends E> c) {
+        for (E t : c) {
             add(t);
         }
         return true;
     }
 
     @Override
-    public boolean addAll(int index, Collection<? extends T> c) {
+    public boolean addAll(int index, Collection<? extends E> c) {
         int i = index;
-        for (T t : c) {
+        for (E t : c) {
             add(i, t);
             i++;
         }
@@ -148,21 +142,23 @@ public class MyArrList<T> implements List<T>, Iterable<T>, Serializable {
      * 修改指定下标处的元素
      */
     @Override
-    public T set(int idx, T ele) {
+    public E set(int idx, E ele) {
         checkIdx(idx);
-        T oldValue = arrData(idx);
+        E oldValue = arrData(idx);
         arr[idx] = ele;
         return oldValue;
     }
 
-    public T get(int i) {
+    @Override
+    public E get(int i) {
         checkIdx(i);
         return arrData(i);
     }
 
-    public T remove(int idx) {
+    @Override
+    public E remove(int idx) {
         checkIdx(idx);
-        T value = arrData(idx);
+        E value = arrData(idx);
         if (idx < size - 1) {
             System.arraycopy(arr, idx + 1, arr, idx, size - (idx + 1));
         }
@@ -203,27 +199,29 @@ public class MyArrList<T> implements List<T>, Iterable<T>, Serializable {
     }
 
     @Override
-    public ListIterator<T> listIterator() {
+    public ListIterator<E> listIterator() {
         return null;
     }
 
     @Override
-    public ListIterator<T> listIterator(int index) {
+    public ListIterator<E> listIterator(int index) {
         return null;
     }
 
     @Override
-    public List<T> subList(int fromIndex, int toIndex) {
+    public List<E> subList(int fromIndex, int toIndex) {
         return Collections.emptyList();
     }
 
+    @Override
     public void clear() {
         arr = new Object[DEFAULT_CAPACITY];
         size = 0;
         capacity = DEFAULT_CAPACITY;
     }
 
-    public Iterator<T> iterator() {
+    @Override
+    public Iterator<E> iterator() {
         return new Itr();
     }
 
@@ -273,8 +271,8 @@ public class MyArrList<T> implements List<T>, Iterable<T>, Serializable {
     }
 
     @SuppressWarnings("unchecked")
-    private T arrData(int idx) {
-        return (T) arr[idx];
+    private E arrData(int idx) {
+        return (E) arr[idx];
     }
 
     /**
@@ -287,7 +285,8 @@ public class MyArrList<T> implements List<T>, Iterable<T>, Serializable {
 
         int w = 0;
         for (int r = 0; r < size; r++) {
-            // 如果元素不需要被移除，把它移动到列表开头，同时记录位置，循环结束后，删除指定位置后的所有元素
+            // w指针，所有需要被移除的元素，都会被它后面不需要被移除的元素覆盖，w指针负责记录覆盖情况，
+            // 随后会将w指针后的数据全部赋值为null
             if (c.contains(arrData(r)) == isKeep) {
                 if (w != r) {
                     arr[w++] = arr[r];
@@ -302,19 +301,35 @@ public class MyArrList<T> implements List<T>, Iterable<T>, Serializable {
         size = w;
     }
 
-    private class Itr implements Iterator<T> {
+    /**
+     * 深拷贝
+     */
+    @Override
+    @SuppressWarnings("unchecked")
+    public ArrList<E> clone() {
+        try {
+            ArrList<E> arrList = (ArrList<E>) super.clone();
+            arrList.arr = Arrays.copyOf(this.arr, capacity);
+            arrList.size = this.size;
+            arrList.capacity = this.capacity;
+            return arrList;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
+
+    private class Itr implements Iterator<E> {
         private int idx;
 
         @Override
         public boolean hasNext() {
-            return idx < MyArrList.this.size;
+            return idx < size;
         }
 
         @Override
-        public T next() {
+        public E next() {
             checkIdx(idx);
-            return MyArrList.this.get(idx++);
+            return get(idx++);
         }
     }
-
 }
