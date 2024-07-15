@@ -1,7 +1,6 @@
-package org.wyj.ds;
+package org.wyj.ds.p5_bin_sort_tree;
 
 import org.junit.Test;
-import org.wyj.ds.p5_bin_sort_tree.BinarySortTree;
 
 import java.util.List;
 

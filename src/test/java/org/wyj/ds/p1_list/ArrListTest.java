@@ -1,7 +1,6 @@
-package org.wyj.ds;
+package org.wyj.ds.p1_list;
 
 import org.junit.Test;
-import org.wyj.ds.p1_list.ArrList;
 
 import java.io.*;
 import java.util.ArrayList;

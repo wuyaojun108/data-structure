@@ -1,7 +1,6 @@
-package org.wyj.ds;
+package org.wyj.ds.p4_queue;
 
 import org.junit.Test;
-import org.wyj.ds.p4_queue.ArrayCircleQueue;
 
 import java.util.Iterator;
 
