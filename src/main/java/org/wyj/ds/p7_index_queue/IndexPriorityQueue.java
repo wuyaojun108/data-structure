@@ -1,4 +1,4 @@
-package org.wyj.ds.p6_index_queue;
+package org.wyj.ds.p7_index_queue;
 
 /**
  * @auther 武耀君
@@ -22,6 +22,7 @@ public class IndexPriorityQueue<E extends Comparable<E>> {
      */
     private int[] pq;
     /**
+     * 快速索引到优先队列中的元素
      * 1. 记录了items中指定下标的元素在pq中的位置，例如，items中第i个下标处的元素在pq中
      * 的下标，就是qp[i]，items[i] = items[pq[qp[i]]]，通过这种方式，当用户修改
      * 了items中的元素后，可以定位到元素在优先队列中的位置，然后维护优先队列。

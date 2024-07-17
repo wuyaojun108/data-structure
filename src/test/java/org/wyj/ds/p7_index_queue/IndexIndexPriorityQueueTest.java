@@ -1,7 +1,6 @@
-package org.wyj.ds;
+package org.wyj.ds.p7_index_queue;
 
 import org.junit.Test;
-import org.wyj.ds.p6_index_queue.IndexPriorityQueue;
 
 /**
  * @auther 武耀君
