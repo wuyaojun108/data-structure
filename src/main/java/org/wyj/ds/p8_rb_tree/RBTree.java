@@ -1,4 +1,4 @@
-package org.wyj.p1_ds.p8_rb_tree;
+package org.wyj.ds.p8_rb_tree;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
