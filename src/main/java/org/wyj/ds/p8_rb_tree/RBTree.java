@@ -1,4 +1,4 @@
-package org.wyj.ds.p8_rb_tree;
+package org.wyj.p1_ds.p8_rb_tree;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -335,20 +335,20 @@ public class RBTree<K extends Comparable<K>, V> {
                 adjustAfterRemove(node);
             } else {
                 // 2.2 兄弟节点是黑色
-                if (isRed(bro.right)) {
+                if (isRed(bro.right)) { // bro.right != null
                     // 2.2.1 兄弟节点有一个右子节点并且右子节点是红色，此时如果有两个节点，也是这么处理
                     bro.color = parent.color;
                     bro.right.color = BLACK;
                     parent.color = BLACK;
                     leftRotate(parent);
-                } else if (isRed(bro.left)) {
-                    // 2.2.2 兄弟节点有一个左子节点
+                } else if (isRed(bro.left)) {  // bro.left != null
+                    // 2.2.2 兄弟节点有一个左子节点并且左子节点是红色
                     bro.color = RED;
                     bro.left.color = BLACK;
                     rightRotate(bro);
                     adjustAfterRemove(node);
                 } else {
-                    // 2.2.3 兄弟节点没有子节点
+                    // 2.2.3 兄弟节点没有子节点或者子节点都是黑色
 
                     if (parent.color == RED) {
                         // 2.2.3.1 父节点是红色
