@@ -39,6 +39,7 @@ public class SortUtilsTest {
         long sub = end - start;
 //        System.out.println("Arrays.toString(arr) = " + Arrays.toString(arr));
         System.out.println("选择排序所用时间：" + sub + "毫秒");
+        assert SortUtils.checkSortProp(arr);
     }
 
     // 测试插入排序

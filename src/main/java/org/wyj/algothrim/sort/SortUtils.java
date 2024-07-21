@@ -31,9 +31,9 @@ public class SortUtils {
      * 直到倒数第一个数，因为当前面所有数有序之后，倒数第一个数一定是有序的
      */
     public static <T extends Comparable<T>> void selectSort(T[] arr) {
-        for (int i = 0; i < arr.length; i++) {
+        for (int i = 0; i < arr.length - 1; i++) {
             int min = i;
-            for (int j = i; j < arr.length; j++) {
+            for (int j = i + 1; j < arr.length; j++) {
                 if (arr[min].compareTo(arr[j]) > 0) {
                     min = j;
                 }
