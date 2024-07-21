@@ -1,4 +1,4 @@
-package org.wyj.algothrim.sort;
+package org.wyj.algothrim;
 
 /**
  * @auther 武耀君

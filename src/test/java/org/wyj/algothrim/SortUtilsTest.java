@@ -1,4 +1,4 @@
-package org.wyj.algothrim.sort;
+package org.wyj.algothrim;
 
 import org.junit.Test;
 
